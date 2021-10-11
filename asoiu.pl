@@ -35,7 +35,7 @@ university_member(X, Y) :- university_teacher(X, Y) .
 
 scholarship(X, Y) :- national(X), point(X, Z), Z >= 553 .
 private(X, Y) :- foreign(X) .
-private(X, Y) :- point(X, Z), Z < 580 .
+private(X, Y) :- point(X, Z), Z < 553 .
 
 
 % online-offline
