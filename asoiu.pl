@@ -72,16 +72,10 @@ private(X) :-
 	point(X, Z), Z < 553 .
 
 % day_no
-even_day(X) :- 
-	X >= 1, 
-	X =< 5, 
-	Z is X mod 2, 
-	Z = 0 .
-odd_day(X) :- 
-	X >= 1, 
-	X =< 5, 
-	Z is X mod 2, 
-	Z = 1 .
+day_validation(X) :-
+	X >= 1,
+	X <= 5 .
+
 % week no
 top_week(X) :-
 	Z is X mod 2,
@@ -119,28 +113,34 @@ different_mod(X, Z) :-
 
 % student, week_no, day_no
 offline(X, Y, Z) :-
+	day_validation(Z),
 	four_special_student(X, Y) .
 offline(X, Y, Z) :-
+	day_validation(Z),
 	odd_number(Y),
 	Week_const is (Y + 1) / 2,
 	odd_number(Week_const),
 	same_mod(X, Z) .
 offline(X, Y, Z) :-
+	day_validation(Z),
 	even_number(Y),
 	Week_const is Y / 2,
 	odd_number(Week_const),
 	same_mod(X, Z) .
 offline(X, Y, Z) :-
+	day_validation(Z),
 	odd_number(Y),
 	Week_const is (Y + 1) / 2,
 	even_number(Week_const),
 	different_mod(X, Z) .
 offline(X, Y, Z) :-
+	day_validation(Z),
 	even_number(Y),
 	Week_const is Y / 2,
 	even_number(Week_const),
 	different_mod(X, Z) .
 
 online(X, Y, Z) :-
+	day_validation(Z),
 	\+ offline(X, Y, Z) .
 
